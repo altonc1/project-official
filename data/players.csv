@@ -1,0 +1,36 @@
+player_id,player_name,team_name,starter,jersey_number
+29201.0,Nahuel Molina Lucero,Argentina,true,26
+7797.0,Rodrigo Javier De Paul,Argentina,true,7
+20572.0,Cristian Gabriel Romero,Argentina,true,13
+3090.0,Nicolás Hernán Otamendi,Argentina,true,19
+5507.0,Nicolás Alejandro Tagliafico,Argentina,true,3
+27886.0,Alexis Mac Allister,Argentina,true,20
+6909.0,Damián Emiliano Martínez,Argentina,true,23
+5503.0,Lionel Andrés Messi Cuccittini,Argentina,true,10
+2995.0,Ángel Fabián Di María Hernández,Argentina,true,11
+29560.0,Julián Álvarez,Argentina,true,9
+38718.0,Enzo Fernandez,Argentina,true,24
+19597.0,Marcos Javier Acuña,Argentina,false,8
+28263.0,Gonzalo Ariel Montiel,Argentina,false,4
+11456.0,Lautaro Javier Martínez,Argentina,false,22
+16308.0,Leandro Daniel Paredes,Argentina,false,5
+5743.0,Paulo Bruno Exequiel Dybala,Argentina,false,21
+7161.0,Germán Alejandro Pezzella,Argentina,false,6
+5487.0,Antoine Griezmann,France,true,7
+10481.0,Aurélien Djani Tchouaméni,France,true,8
+3604.0,Olivier Giroud,France,true,9
+3026.0,Adrien Rabiot,France,true,14
+5477.0,Ousmane Dembélé,France,true,11
+6704.0,Theo Bernard François Hernández,France,true,22
+5485.0,Raphaël Varane,France,true,4
+4445.0,Jules Koundé,France,true,5
+3099.0,Hugo Lloris,France,true,1
+8519.0,Dayotchanculle Upamecano,France,true,18
+3009.0,Kylian Mbappé Lottin,France,true,10
+22097.0,Randal Kolo Muani,France,false,12
+2972.0,Marcus Thuram,France,false,26
+24778.0,Eduardo Camavinga,France,false,25
+8217.0,Kingsley Coman,France,false,20
+11990.0,Youssouf Fofana,France,false,13
+11135.0,Ibrahima Konaté,France,false,24
+7439.0,Axel Disasi,France,false,3
