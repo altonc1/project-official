@@ -1,8 +1,7 @@
 use plotters::coord::Shift;
 use plotters::prelude::*;
-use crate::key_functions::functions::{average_pass_location, average_pass_start_location};
+use crate::key_functions::functions::average_pass_start_location;
 use crate::players::PlayerData;
-use crate::raw_passes::PassingImportant;
 use crate::PassingData;
 use std::f64::consts::PI;
 use crate::starting_xi;
@@ -51,7 +50,7 @@ pub fn draw_field<'a>(filename: &'a str)-> Result<DrawingArea<BitMapBackend<'a>,
 }
 
 pub fn player_passing_map (name: &str, data: &Vec<PassingData>)-> Result<(), Box<dyn std::error::Error>>{
-    let filename= format!("{}_passing_map.png", name);
+    let filename= format!("output/{}_passing_map.png", name);
     let root= draw_field(&filename)?;
     let x_scale=800.0/120.0;
     let y_scale=600.0/80.0;
@@ -70,18 +69,18 @@ pub fn player_passing_map (name: &str, data: &Vec<PassingData>)-> Result<(), Box
             root.draw(&Polygon::new(vec![(x_end, y_end),(left.0 as i32, left.1 as i32),(right.0 as i32, right.1 as i32),],ShapeStyle::from(&BLACK).filled(),))?;
         }
     }
+    println!("{} passing map can be found in output folder", name);
     Ok(())    
     }
 pub fn team_passing (team:&str, passing_data: &Vec<PassingData>, player_data: &Vec<PlayerData> )->Result<(), Box<dyn std::error::Error>>{
-    let filename= format!("{}_passing_map.png", team);
+    let filename= format!("output/{}_passing_map.png", team);
     let root= draw_field(&filename)?;
     let x_scale=800.0/120.0;
     let y_scale=600.0/80.0;
     let starters= starting_xi(player_data, team);
     for passer in starters.keys() {
         let (x,y)= average_pass_start_location(passer, passing_data);
-
-        let pairs= top_passes(passer, passing_data);
+        let pairs= top_passes(passer, passing_data, false);
         for (pair, count) in pairs{
             if starters.contains_key(&pair.1) {
                 if count >= 5{
@@ -90,7 +89,8 @@ pub fn team_passing (team:&str, passing_data: &Vec<PassingData>, player_data: &V
                     let x_end= (end_x * x_scale) as i32;
                     let y_end= (end_y * y_scale) as i32;
                     root.draw(&PathElement::new(vec![ ((x*x_scale) as i32,(y* y_scale) as i32 ), (x_end,y_end)], ShapeStyle::from(&RED).stroke_width(1+scale as u32)))?;
-                    
+
+                    // draw arrow
                     let arrow_size = 10.0 + scale as f64;
                     let angle = ((y_end - (y * y_scale) as i32) as f64).atan2((x_end - (x * x_scale) as i32) as f64);
                     let shifted_x_end = x_end as f64 - 20.0 * angle.cos();
@@ -108,11 +108,7 @@ pub fn team_passing (team:&str, passing_data: &Vec<PassingData>, player_data: &V
         root.draw(&Circle::new(((x*x_scale) as i32,(y* y_scale) as i32),20,ShapeStyle::from(&BLACK).stroke_width(1)))?;
         root.draw(&Text::new(number.to_string(),((x*x_scale) as i32,(y* y_scale) as i32),("Arial", 20).into_font().color(&BLACK).pos(Pos::new(HPos::Center, VPos::Center))))?;
     }
-        
-
     }
-    
-
- 
+    println!("{} passing map can be found in output folder", team);
     Ok(())
     }
