@@ -1,5 +1,6 @@
 use std::io;
 mod raw_passes;
+use key_functions::functions::most_passes;
 use key_functions::functions::pass_success;
 use players::PlayerData;
 use raw_passes::PassingData;
@@ -20,7 +21,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
         println!("3. Player Passing Map");
         println!("4. Team Passing Map");
         println!("5. Player Passing Percentage");
-        println!("6. Exit");
+        println!("6. Team's Top Passers");
+        println!("7. Exit");
 
         let mut option = String::new();
         io::stdin().read_line(&mut option).unwrap();
@@ -63,7 +65,14 @@ fn main() -> Result<(), Box<dyn std::error::Error>>{
                 let name= name.trim();
                 pass_success(name, &passing);
             }
-            "6" => break,
+            "6" =>{
+                println!("Enter team: ");
+                let mut team= String::new();
+                io::stdin().read_line(&mut team).unwrap();
+                let team= team.trim();
+                most_passes(team, &passing);
+            }
+            "7" => break,
             _ => println!("Invalid Option, Please Choose Again"),
         }
     }
